@@ -10,7 +10,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.PersonalProfileSROPage;
-import java.io.IOException;
 import static driver.Driver.waitForLoadPage;
 
 /**
@@ -18,7 +17,7 @@ import static driver.Driver.waitForLoadPage;
  *
  * Тестовое задание СКДО
  */
-public class SKDOTest {
+public class SKDOTest extends BaseTest {
     private WebDriver driver;
     private WebDriverWait driverWait;
 
@@ -27,13 +26,12 @@ public class SKDOTest {
        static PersonalProfileSROPage personalProfileSROPage = new PersonalProfileSROPage();
     }
 
-    @BeforeTest// Предустановка
-    public void openTestBrowser(){
-       driver = new Driver().getDriver();
-       driverWait = new WebDriverWait(driver,30);
+    @Test(description = "Инициализация страниц")
+    public void pageInit(){
+        System.out.printf("232iuondoi23");
     }
 
-    @Test(dataProvider = "testData")
+    @Test(dataProvider = "testData", description = "Простой тест",dependsOnMethods = "pageInit")
     public void authorization(String URL,String login,String password,String smsCode,String titleText){
         driver.get(URL);
         Pages.authorizationPage.entry(driver,login,password);
@@ -44,10 +42,11 @@ public class SKDOTest {
         Assert.assertEquals(title, titleText);
     }
 
-    @AfterTest
-    public void tearDown(){
-        driver.close();
+    @Test(dependsOnMethods = "authorization", description = "Калькулятор")
+    public void calculate(){
+        Assert.assertEquals(1, 2-1);
     }
+
 
     @DataProvider
     private Object[][] testData(){

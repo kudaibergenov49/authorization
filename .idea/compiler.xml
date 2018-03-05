@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="authorization" />
+        <module name="skdoTest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="authorization" target="1.5" />
+      <module name="skdoTest" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

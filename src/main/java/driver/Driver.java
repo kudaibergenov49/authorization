@@ -37,5 +37,6 @@ public class Driver {
         };
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(pageLoadCondition);
+        System.out.println("121212");
     }
 }
